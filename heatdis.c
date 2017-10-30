@@ -14,7 +14,7 @@
 
 
 #define PRECISION   0.005
-#define ITER_TIMES  5000
+#define ITER_TIMES  500
 #define ITER_OUT    500
 #define WORKTAG     50
 #define REDUCE      5
@@ -112,10 +112,11 @@ int main(int argc, char *argv[])
     int check = 0;
     for (i = 0; i < ITER_TIMES; i++) {
 
-        if (i==200 && rank == 2) {
+        if (i==200 && rank !=0) {
             check = 1;
         }
-        scatterEvent(check, 0, 100, FTI_COMM_WORLD, i);
+        scatterEvent(check, 0, 100, FTI_COMM_WORLD);
+        check = 0;
         int checkpointed = FTI_Snapshot();
         localerror = doWork(nbProcs, rank, M, nbLines, g, h);
         if (((i%ITER_OUT) == 0) && (rank == 0)) {

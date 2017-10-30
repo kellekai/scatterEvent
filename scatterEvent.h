@@ -6,6 +6,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int scatterEvent( int check, int initSync, int syncIter, MPI_Comm gcomm, int iter );
+int scatterEvent( int check, int initSync, int syncIter, MPI_Comm gcomm );
 
 #endif
